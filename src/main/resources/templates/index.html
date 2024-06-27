@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Super Compare</title>
+</head>
+<body>
+<div class="description">
+    <h1>Super Compare</h1>
+    <p>With Super Compare you can compare the teams from the Super League and the Premiere League</p>
+</div>
+
+<div class="select_league">
+    <select name="league-redirect" id="leagueSelect" class="form-select" aria-label="Which League">
+        <option th:selected="${selectedLeague == 1}" id="pl" value="1">Premiere League(England)</option>
+        <option th:selected="${selectedLeague == 2}" id="sl" value="2">Super League (Switzerland)</option>
+    </select>
+</div>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name <div class="form-check">
+            <input class="form-check-input" name="filterFlexbox"  th:checked="${isAlphaChecked}" type="radio" value="alpha" id="alpha">
+            <label class="form-check-label" for="alpha">
+                Alphabetical
+            </label>
+        </div></th>
+        <th scope="col">P</th>
+        <th scope="col">W
+            <div class="form-check">
+                <input class="form-check-input" name="filterFlexbox" th:checked="${isWinChecked}" type="radio" value="wins" id="wins">
+                <label class="form-check-label" for="wins">
+                    Most Wins
+                </label>
+            </div></th>
+        <th scope="col">D<div class="form-check">
+            <input name="filterFlexbox"  th:checked="${isDrawChecked}" class="form-check-input" type="radio" value="draws" id="draws">
+            <label class="form-check-label" for="draws">
+                Least Draws
+            </label>
+        </div></th>
+        <th scope="col">L       <div class="form-check">
+            <input class="form-check-input" th:checked="${isLossesChecked}" name="filterFlexbox" type="radio" value="losses" id="losses">
+            <label class="form-check-label" for="losses">
+                Most losses
+            </label>
+        </div></th>
+        <th scope="col">GF       <div class="form-check">
+            <input class="form-check-input" th:checked="${isGFChecked}" name="filterFlexbox" type="radio" value="goalsFor" id="goalsFor">
+            <label class="form-check-label" for="goalsFor">
+                Most gaols
+            </label>
+        </div></th>
+        <th scope="col">GA       <div class="form-check">
+            <input class="form-check-input" name="filterFlexbox" th:checked="${isGAChecked}" type="radio" value="goalsAgainst" id="goalsAgainst">
+            <label class="form-check-label" for="goalsAgainst">
+                Most goals conceeded
+            </label>
+        </div></th>
+        <th scope="col">GD       <div class="form-check">
+            <input class="form-check-input" name="filterFlexbox" th:checked="${isGDChecked}" type="radio" value="goalDiff" id="goalDiff">
+            <label class="form-check-label" for="goalDiff">
+                Most goal difference
+            </label>
+        </div></th>
+        <th scope="col">PTS       <div class="form-check">
+            <input class="form-check-input" th:checked="${normal}" name="filterFlexbox" type="radio" value="points" id="points">
+            <label class="form-check-label" for="points">
+                Normal
+            </label>
+        </div></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="team : ${teams}">
+        <td th:text="${team.id}"></td>
+        <td th:text="${team.name}"></td>
+        <td th:text="${team.played}"></td>
+        <td th:text="${team.won}"></td>
+        <td th:text="${team.drawn}"></td>
+        <td th:text="${team.lost}"></td>
+        <td th:text="${team.goalsFor}"></td>
+        <td th:text="${team.goalsAgainst}"></td>
+        <td th:text="${team.goalDifference}"></td>
+        <td th:text="${team.points}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/js/dropdown.js" referrerpolicy="no-referrer"></script>
+
+</html>
