@@ -1,27 +1,28 @@
-package com.example.football_compare.models;
+package com.example.football_compare.models; // Definiert das Paket, in dem sich diese Klasse befindet
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.Entity; // Importiert die JPA-Annotationen
 import jakarta.persistence.Id;
 
-@Entity
+@Entity // Markiert diese Klasse als JPA-Entity, die mit einer Datenbanktabelle verbunden ist
 public class Team {
-    private Long id;
+    private Long id; // Primärschlüssel der Entität
 
-    private String name;
+    private String name; // Name des Teams
 
-    private int played;
+    private int played; // Anzahl der gespielten Spiele
 
-    private int won;
+    private int won; // Anzahl der gewonnenen Spiele
 
-    private int drawn;
+    private int drawn; // Anzahl der Unentschieden
 
-    private int lost;
+    private int lost; // Anzahl der verlorenen Spiele
 
-    private int goalsFor;
-    private int goalsAgainst;
-    private int goalDifference;
-    private int points;
+    private int goalsFor; // Anzahl der geschossenen Tore
+    private int goalsAgainst; // Anzahl der kassierten Tore
+    private int goalDifference; // Tordifferenz (goalsFor - goalsAgainst)
+    private int points; // Anzahl der Punkte
 
+    // Getter- und Setter-Methoden für den Zugriff und die Modifikation der Felder
 
     public String getName() {
         return name;
@@ -99,7 +100,7 @@ public class Team {
         this.id = id;
     }
 
-    @Id
+    @Id // Markiert diese Methode als diejenige, die den Primärschlüssel zurückgibt
     public Long getId() {
         return id;
     }

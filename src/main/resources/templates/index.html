@@ -1,101 +1,114 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"> <!-- Definiert das Dokument als HTML5 und bindet das Thymeleaf-Namespace ein -->
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> <!-- Setzt die Zeichenkodierung des Dokuments auf UTF-8 -->
 
+    <!-- Bindet das Bootstrap CSS-Framework ein für responsive Design und Stil -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Super Compare</title>
+    <title>Super Compare</title> <!-- Setzt den Titel der Seite -->
 </head>
-<body>
-<div class="description">
-    <h1>Super Compare</h1>
-    <p>With Super Compare you can compare the teams from the Super League and the Premiere League</p>
+<body style="margin: 5%;">
+<div class="description"> <!-- Abschnitt für die Beschreibung -->
+    <h1>Super Compare</h1> <!-- Hauptüberschrift der Seite -->
+    <p>With Super Compare you can compare the teams from the Super League and the Premiere League</p> <!-- Beschreibungstext -->
 </div>
 
-<div class="select_league">
-    <select name="league-redirect" id="leagueSelect" class="form-select" aria-label="Which League">
-        <option th:selected="${selectedLeague == 1}" id="pl" value="1">Premiere League(England)</option>
+<div class="select_league"> <!-- Abschnitt für die Ligaauswahl -->
+    <select name="league-redirect" id="leagueSelect" class="form-select" aria-label="Which League"> <!-- Dropdown für die Ligaauswahl -->
+        <!-- Option für die Premier League, ausgewählt wenn selectedLeague == 1 -->
+        <option th:selected="${selectedLeague == 1}" id="pl" value="1">Premiere League (England)</option>
+        <!-- Option für die Super League, ausgewählt wenn selectedLeague == 2 -->
         <option th:selected="${selectedLeague == 2}" id="sl" value="2">Super League (Switzerland)</option>
     </select>
 </div>
 
-<table class="table table-striped">
+<table class="table table-striped"> <!-- Tabelle mit Bootstrap-Klassen für gestreifte Zeilen -->
     <thead>
     <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name <div class="form-check">
-            <input class="form-check-input" name="filterFlexbox"  th:checked="${isAlphaChecked}" type="radio" value="alpha" id="alpha">
-            <label class="form-check-label" for="alpha">
-                Alphabetical
-            </label>
-        </div></th>
-        <th scope="col">P</th>
+        <th scope="col">#</th> <!-- Spaltenüberschrift für Nummerierung -->
+        <th scope="col">Name
+            <!-- Filteroption für alphabetische Sortierung -->
+            <div class="form-check">
+                <input class="form-check-input" name="filterFlexbox" th:checked="${isAlphaChecked}" type="radio" value="alpha" id="alpha">
+                <label class="form-check-label" for="alpha">Alphabetical</label>
+            </div>
+        </th>
+        <th scope="col">P</th> <!-- Spaltenüberschrift für Spiele (Played) -->
         <th scope="col">W
+            <!-- Filteroption für die meisten Siege -->
             <div class="form-check">
                 <input class="form-check-input" name="filterFlexbox" th:checked="${isWinChecked}" type="radio" value="wins" id="wins">
-                <label class="form-check-label" for="wins">
-                    Most Wins
-                </label>
-            </div></th>
-        <th scope="col">D<div class="form-check">
-            <input name="filterFlexbox"  th:checked="${isDrawChecked}" class="form-check-input" type="radio" value="draws" id="draws">
-            <label class="form-check-label" for="draws">
-                Least Draws
-            </label>
-        </div></th>
-        <th scope="col">L       <div class="form-check">
-            <input class="form-check-input" th:checked="${isLossesChecked}" name="filterFlexbox" type="radio" value="losses" id="losses">
-            <label class="form-check-label" for="losses">
-                Most losses
-            </label>
-        </div></th>
-        <th scope="col">GF       <div class="form-check">
-            <input class="form-check-input" th:checked="${isGFChecked}" name="filterFlexbox" type="radio" value="goalsFor" id="goalsFor">
-            <label class="form-check-label" for="goalsFor">
-                Most gaols
-            </label>
-        </div></th>
-        <th scope="col">GA       <div class="form-check">
-            <input class="form-check-input" name="filterFlexbox" th:checked="${isGAChecked}" type="radio" value="goalsAgainst" id="goalsAgainst">
-            <label class="form-check-label" for="goalsAgainst">
-                Most goals conceeded
-            </label>
-        </div></th>
-        <th scope="col">GD       <div class="form-check">
-            <input class="form-check-input" name="filterFlexbox" th:checked="${isGDChecked}" type="radio" value="goalDiff" id="goalDiff">
-            <label class="form-check-label" for="goalDiff">
-                Most goal difference
-            </label>
-        </div></th>
-        <th scope="col">PTS       <div class="form-check">
-            <input class="form-check-input" th:checked="${normal}" name="filterFlexbox" type="radio" value="points" id="points">
-            <label class="form-check-label" for="points">
-                Normal
-            </label>
-        </div></th>
+                <label class="form-check-label" for="wins">Most Wins</label>
+            </div>
+        </th>
+        <th scope="col">D
+            <!-- Filteroption für die wenigsten Unentschieden -->
+            <div class="form-check">
+                <input name="filterFlexbox" th:checked="${isDrawChecked}" class="form-check-input" type="radio" value="draws" id="draws">
+                <label class="form-check-label" for="draws">Least Draws</label>
+            </div>
+        </th>
+        <th scope="col">L
+            <!-- Filteroption für die meisten Niederlagen -->
+            <div class="form-check">
+                <input class="form-check-input" th:checked="${isLossesChecked}" name="filterFlexbox" type="radio" value="losses" id="losses">
+                <label class="form-check-label" for="losses">Most losses</label>
+            </div>
+        </th>
+        <th scope="col">GF
+            <!-- Filteroption für die meisten geschossenen Tore -->
+            <div class="form-check">
+                <input class="form-check-input" th:checked="${isGFChecked}" name="filterFlexbox" type="radio" value="goalsFor" id="goalsFor">
+                <label class="form-check-label" for="goalsFor">Most goals</label>
+            </div>
+        </th>
+        <th scope="col">GA
+            <!-- Filteroption für die meisten kassierten Tore -->
+            <div class="form-check">
+                <input class="form-check-input" name="filterFlexbox" th:checked="${isGAChecked}" type="radio" value="goalsAgainst" id="goalsAgainst">
+                <label class="form-check-label" for="goalsAgainst">Most goals conceded</label>
+            </div>
+        </th>
+        <th scope="col">GD
+            <!-- Filteroption für die größte Tordifferenz -->
+            <div class="form-check">
+                <input class="form-check-input" name="filterFlexbox" th:checked="${isGDChecked}" type="radio" value="goalDiff" id="goalDiff">
+                <label class="form-check-label" for="goalDiff">Most goal difference</label>
+            </div>
+        </th>
+        <th scope="col">PTS
+            <!-- Filteroption für normale Sortierung -->
+            <div class="form-check">
+                <input class="form-check-input" th:checked="${normal}" name="filterFlexbox" type="radio" value="points" id="points">
+                <label class="form-check-label" for="points">Normal</label>
+            </div>
+        </th>
     </tr>
     </thead>
     <tbody>
+    <!-- Wiederholung der Zeilen für jedes Team in der Liste -->
     <tr th:each="team : ${teams}">
-        <td th:text="${team.id}"></td>
-        <td th:text="${team.name}"></td>
-        <td th:text="${team.played}"></td>
-        <td th:text="${team.won}"></td>
-        <td th:text="${team.drawn}"></td>
-        <td th:text="${team.lost}"></td>
-        <td th:text="${team.goalsFor}"></td>
-        <td th:text="${team.goalsAgainst}"></td>
-        <td th:text="${team.goalDifference}"></td>
-        <td th:text="${team.points}"></td>
+        <td th:text="${team.id}"></td> <!-- Team-ID -->
+        <td th:text="${team.name}"></td> <!-- Team-Name -->
+        <td th:text="${team.played}"></td> <!-- Anzahl der gespielten Spiele -->
+        <td th:text="${team.won}"></td> <!-- Anzahl der gewonnenen Spiele -->
+        <td th:text="${team.drawn}"></td> <!-- Anzahl der Unentschieden -->
+        <td th:text="${team.lost}"></td> <!-- Anzahl der verlorenen Spiele -->
+        <td th:text="${team.goalsFor}"></td> <!-- Anzahl der geschossenen Tore -->
+        <td th:text="${team.goalsAgainst}"></td> <!-- Anzahl der kassierten Tore -->
+        <td th:text="${team.goalDifference}"></td> <!-- Tordifferenz -->
+        <td th:text="${team.points}"></td> <!-- Punkte -->
     </tr>
     </tbody>
 </table>
 </body>
+<!-- Bindet das Bootstrap JavaScript-Bundle ein für interaktive Komponenten -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<!-- Bindet jQuery ein -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Bindet eine benutzerdefinierte JavaScript-Datei ein -->
 <script src="/js/dropdown.js" referrerpolicy="no-referrer"></script>
 
 </html>
